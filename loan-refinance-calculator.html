@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#174a97">
+<meta name="description" content="대환대출 갈아타기 전 월 상환액, 이자 절감액, 중도상환수수료 및 순절감액을 비교하세요.">
+<title>대환대출 갈아타기 비교 계산기</title>
+<style>
+:root{font-family:system-ui,-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:#17233c;background:#f4f7fc;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}.shell{width:min(760px,100%);margin:auto;padding:24px 15px 54px}.hero{background:linear-gradient(135deg,#174a97,#306fd1);padding:28px 24px;color:white;border-radius:22px;margin-bottom:16px}.eyebrow{font-size:12px;opacity:.85;letter-spacing:.04em}.hero h1{font-size:clamp(22px,5vw,31px);line-height:1.35;margin:9px 0}.hero p{margin:0;font-size:14px;line-height:1.7;opacity:.92}.panel{background:white;border:1px solid #e2e8f2;border-radius:18px;padding:22px;margin:14px 0;box-shadow:0 3px 16px #1b3d7c0c}h2{font-size:19px;margin:0 0 18px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.field{display:flex;flex-direction:column;gap:8px}.field.full{grid-column:1/-1}label{font-weight:650;font-size:13px}input,select{min-width:0;max-width:100%;height:46px;border:1px solid #cbd5e1;border-radius:10px;padding:0 12px;background:white;font:inherit;font-size:16px;color:#17233c}input:focus,select:focus{outline:3px solid #bdd5ff;border-color:#3977db}.note{font-size:12px;color:#68768e;line-height:1.55}.row{display:flex;justify-content:space-between;gap:10px;align-items:center}.btn{border:0;border-radius:12px;padding:12px 18px;font:inherit;font-size:14px;font-weight:700;cursor:pointer;min-height:44px}.btn.primary{color:white;background:#1855ad}.btn.secondary{color:#174a97;background:#eaf1ff}.btn:focus-visible{outline:3px solid #9dc3ff}.resultcards{display:grid;grid-template-columns:1fr 1fr;gap:12px}.metric{background:#f2f6fe;padding:15px;border-radius:13px}.metric span{display:block;color:#5f6f89;font-size:12px;margin-bottom:9px}.metric strong{font-size:clamp(17px,3.5vw,23px);letter-spacing:-.03em;overflow-wrap:anywhere}.highlight{background:#eaf7f1;border:1px solid #c2ead4;border-radius:15px;padding:20px;margin:13px 0}.highlight .label{font-size:13px;font-weight:700;color:#165b40}.highlight .big{font-size:clamp(24px,6vw,34px);font-weight:800;color:#087645;margin-top:7px;letter-spacing:-.04em}.highlight.negative{background:#fff2f1;border-color:#ffdad6}.highlight.negative .big{color:#bc3434}.item{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 2px;border-bottom:1px solid #eef1f5;font-size:14px}.item:last-child{border-bottom:0}.item strong{text-align:right;font-variant-numeric:tabular-nums}.muted{color:#627189;font-size:13px;line-height:1.7}.good{color:#087645}.bad{color:#bc3434}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.error{color:#b42318;font-size:13px;min-height:1em}.foot{font-size:12px;line-height:1.75;color:#64748b;margin-top:18px}.hidden{display:none!important}footer{font-size:12px;color:#64748b;text-align:center;margin-top:22px}@media(max-width:480px){.shell{padding:12px 10px 40px}.hero{padding:23px 18px;border-radius:17px}.panel{padding:17px 15px}.grid{gap:12px}.grid .field{grid-column:1/-1}.resultcards{gap:8px}.metric{padding:12px 10px}.metric strong{font-size:17px}.actions .btn{flex:1}}
+</style>
+</head>
+<body>
+<main class="shell">
+<header class="hero"><div class="eyebrow">무료 대출 비교 도구</div><h1>대환대출 갈아타기<br>비교 계산기</h1><p>금리와 상환기간, 수수료를 비교해 갈아타기가 유리한지 확인하세요. 입력 내용은 서버로 전송되지 않습니다.</p></header>
+<section class="panel" aria-labelledby="inputs-title">
+<div class="row"><h2 id="inputs-title">대출 조건 입력</h2><button class="btn secondary" id="reset" type="button">초기화</button></div>
+<div class="grid">
+<div class="field full"><label for="balance">현재 남은 대출금 (만원)</label><input id="balance" type="number" min="0.01" step="any" inputmode="decimal" value="10000"></div>
+<div class="field"><label for="oldRate">기존 대출 연금리 (%)</label><input id="oldRate" type="number" min="0" max="100" step="any" inputmode="decimal" value="5.5"></div>
+<div class="field"><label for="newRate">갈아탈 대출 연금리 (%)</label><input id="newRate" type="number" min="0" max="100" step="any" inputmode="decimal" value="4"></div>
+<div class="field"><label for="oldMonths">기존 대출 잔여기간 (개월)</label><input id="oldMonths" type="number" min="1" max="600" step="1" inputmode="numeric" value="240"></div>
+<div class="field"><label for="newMonths">신규 대출 상환기간 (개월)</label><input id="newMonths" type="number" min="1" max="600" step="1" inputmode="numeric" value="240"></div>
+<div class="field"><label for="feeRate">중도상환수수료율 (%)</label><input id="feeRate" type="number" min="0" max="100" step="any" inputmode="decimal" value="0.5"></div>
+<div class="field"><label for="otherFee">기타 갈아타기 비용 (만원)</label><input id="otherFee" type="number" min="0" step="any" inputmode="decimal" value="0"></div>
+<div class="field full"><label for="feeMode">수수료 입력 방식</label><select id="feeMode"><option value="rate">대출잔액 × 입력 수수료율(단순 추정)</option><option value="fixed">실제 수수료 금액 직접 입력</option></select></div>
+<div class="field full hidden" id="fixedFeeBox"><label for="fixedFee">실제 중도상환수수료 (만원)</label><input id="fixedFee" type="number" min="0" step="any" inputmode="decimal" value="0"></div>
+</div><p class="note">원리금균등상환, 만기까지 금리 고정, 신규 대출금은 현재 대출잔액과 동일하다고 가정합니다. 실제 중도상환수수료는 상품별 잔존기간·면제 규정 등에 따라 달라질 수 있습니다.</p><div class="error" id="error" role="alert" aria-live="polite"></div>
+</section>
+<section class="panel" aria-labelledby="result-title"><h2 id="result-title">비교 결과</h2><div id="results" aria-live="polite">
+<div class="resultcards"><div class="metric"><span>기존 월 상환액</span><strong id="oldMonthly">-</strong></div><div class="metric"><span>갈아탄 후 월 상환액</span><strong id="newMonthly">-</strong></div></div>
+<div class="highlight" id="monthlyBox"><div class="label">월 상환액 변화 (기존 − 신규)</div><div class="big" id="monthlySavings">-</div><div class="muted">상환기간이 달라지면 월 부담과 총이자를 함께 비교하세요.</div></div>
+<div class="item"><span>기존 대출 잔여 총이자</span><strong id="oldInterest">-</strong></div><div class="item"><span>신규 대출 예상 총이자</span><strong id="newInterest">-</strong></div><div class="item"><span>총이자 절감액</span><strong id="interestSavings">-</strong></div><div class="item"><span>중도상환수수료</span><strong id="fee">-</strong></div><div class="item"><span>기타 비용</span><strong id="otherCost">-</strong></div><div class="item"><span><b>갈아타기 순절감액</b></span><strong id="netSavings">-</strong></div>
+<p class="muted" id="verdict"></p>
+<div class="actions"><button class="btn primary" type="button" id="copy">결과 복사</button><button class="btn secondary" type="button" id="share">공유하기</button></div></div>
+</section><section class="panel"><h2>계산 전 확인하세요</h2><p class="muted">이 계산은 대출 비교용 추정치로, 은행의 실제 심사·대출 가능 여부·DSR·금리 변동·우대금리·거치기간·인지세 등은 자동 반영되지 않습니다. 변동금리는 현재 입력값이 만기까지 유지된다는 가정으로 계산합니다. 특히 <b>상환기간을 늘리면 월 상환액은 줄어도 총이자가 더 많아질 수 있습니다.</b></p><p class="muted">원리금균등상환 방식이 아닌 만기일시상환·원금균등상환 대출에 이 계산을 그대로 적용하지 마세요. 실제 계약 조건과 금융회사 산출 내역으로 최종 확인하세요.</p></section><footer>대환대출 비교 계산기 · 참고용 금융 계산 도구</footer>
+</main>
+<script>
+(function(){'use strict';
+const ids=['balance','oldRate','newRate','oldMonths','newMonths','feeRate','otherFee','feeMode','fixedFee'];
+const el=id=>document.getElementById(id);
+const won=v=>Math.round(v).toLocaleString('ko-KR')+'원';
+const signed=v=>(v>0?'+':'')+won(v);
+const get=id=>Number(el(id).value);
+let copyText='';
+function payment(P, annual, n){const rate=annual/1200;return rate===0?P/n:P*(rate/(1-Math.pow(1+rate,-n)));}
+function calc(){
+ el('fixedFeeBox').classList.toggle('hidden',el('feeMode').value!=='fixed');
+ const P=get('balance')*10000, oldRate=get('oldRate'),newRate=get('newRate'),oldN=get('oldMonths'),newN=get('newMonths'),feeRate=get('feeRate'),other=get('otherFee')*10000,fixed=get('fixedFee')*10000;
+ const nums=[P,oldRate,newRate,oldN,newN,feeRate,other,fixed];
+ const invalid=nums.some(x=>!Number.isFinite(x)||x<0)||P<=0||oldRate>100||newRate>100||feeRate>100||oldN<1||oldN>600||newN<1||newN>600||!Number.isInteger(oldN)||!Number.isInteger(newN)||ids.filter(id=>id!=='feeMode').some(id=>el(id).value.trim()==='');
+ el('results').classList.toggle('hidden',invalid);
+ if(invalid){el('error').textContent='금액은 0 이상, 금리는 0~100%, 기간은 1~600개월 정수로 입력해 주세요. 대출잔액은 0보다 커야 합니다.';return;}
+ el('error').textContent='';
+ const om=payment(P,oldRate,oldN),nm=payment(P,newRate,newN),oi=om*oldN-P,ni=nm*newN-P;
+ const fee=el('feeMode').value==='fixed'?fixed:P*feeRate/100;
+ const savings=oi-ni,net=savings-fee-other,monthly=om-nm;
+ const values={oldMonthly:om,newMonthly:nm,monthlySavings:monthly,oldInterest:oi,newInterest:ni,interestSavings:savings,fee,otherCost:other,netSavings:net};
+ Object.entries(values).forEach(([id,v])=>el(id).textContent=(['monthlySavings','interestSavings','netSavings'].includes(id)?signed(v):won(v)));
+ el('monthlyBox').classList.toggle('negative',monthly<0);
+ el('netSavings').className=net>=0?'good':'bad';
+ el('verdict').textContent=net>0?'동일한 원금과 입력한 상환 조건에서는 총비용을 포함해 갈아타기가 유리한 것으로 계산됩니다.':net<0?'입력한 조건에서는 갈아타기 비용 또는 이자 부담이 절감액보다 큽니다.':'입력한 조건에서 총비용 차이는 0원으로 계산됩니다.';
+ copyText=['대환대출 비교 결과','대출잔액: '+won(P),'기존 금리: '+oldRate+'% / 신규 금리: '+newRate+'%','기존 잔여기간: '+oldN+'개월 / 신규 기간: '+newN+'개월','기존 월 상환액: '+won(om),'신규 월 상환액: '+won(nm),'월 상환액 차이: '+signed(monthly),'총이자 절감액: '+signed(savings),'중도상환수수료: '+won(fee),'기타 비용: '+won(other),'순절감액: '+signed(net),'※ 원리금균등상환·고정금리 가정 추정치'].join('\n');
+}
+ids.forEach(id=>{el(id).addEventListener('input',calc);el(id).addEventListener('change',calc)});
+el('reset').addEventListener('click',()=>{Object.entries({balance:'10000',oldRate:'5.5',newRate:'4',oldMonths:'240',newMonths:'240',feeRate:'0.5',otherFee:'0',feeMode:'rate',fixedFee:'0'}).forEach(([k,v])=>el(k).value=v);calc()});
+el('copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(copyText);el('copy').textContent='복사 완료';setTimeout(()=>el('copy').textContent='결과 복사',1600)}catch(e){window.prompt('아래 내용을 복사하세요',copyText)}});
+el('share').addEventListener('click',async()=>{if(navigator.share){try{await navigator.share({title:document.title,text:'대환대출 갈아타기 조건을 비교해 보세요.',url:location.href})}catch(e){}}else{try{await navigator.clipboard.writeText(location.href);el('share').textContent='링크 복사 완료';setTimeout(()=>el('share').textContent='공유하기',1600)}catch(e){window.prompt('페이지 링크를 복사하세요',location.href)}}});
+calc();
+})();
+</script>
+</body>
+</html>
